@@ -11,6 +11,7 @@ const LABELS = {
   'fasilitas': 'Fasilitas',
   'pokok': 'Pokok',
   'jalan': 'Jalan',
+  'groin': 'Groin',
   'website': 'Website',
   'dokumen': 'Dokumen',
   'profil': 'Profil',
