@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import '../styles/fasilitas-form.css'
 import FormHeader from '../components/FormHeader'
 import SearchableSelect from '../components/SearchableSelect'
+import StandardFooterFields from '../components/StandardFooterFields'
 import { isEmpty, createIsRequiredEmpty, createIsSaveDisabled } from '../utils/formValidation'
 import { KONDISI_OPTIONS, KETERANGAN_KONSTRUKSI_TIP, KONDISI_TIP, PELABUHAN_OPTIONS, SUMBER_DANA_OPTIONS } from '../utils/formStandards'
-import StandardFooterFields from '../components/StandardFooterFields'
 
-const FasilitasPokokGroin = () => {
+const FasilitasPokokBreakwater = () => {
   const [formData, setFormData] = useState({
     pelabuhan: '',
     tahunPembuatan: '',
@@ -17,8 +17,6 @@ const FasilitasPokokGroin = () => {
     lebar: '',
     rencanaPengembanganLebar: '',
     elevasi: '',
-    jumlahGroin: '',
-    jarakGroin: '',
     keteranganKonstruksi: '',
     kondisi: '',
     sumberDana: '',
@@ -47,14 +45,12 @@ const FasilitasPokokGroin = () => {
     pelabuhan: 'Pelabuhan tempat fasilitas berada. Pilih dari daftar. Contoh: PPS Nizam Zachman Jakarta',
     tahunPembuatan: 'Pilih tahun pembuatan (tahun saja). Contoh: 2025',
     keteranganRehab: 'Uraikan kegiatan rehab/pekerjaan jika ada.',
-    jenisKonstruksi: 'Pilih material utama konstruksi groin. Contoh: Beton, Batu',
-    panjang: 'Panjang groin dalam meter (angka). Contoh: 50',
+    jenisKonstruksi: 'Pilih material utama konstruksi breakwater. Contoh: Beton, Batu',
+    panjang: 'Panjang breakwater dalam meter (angka). Contoh: 120',
     rencanaPengembanganPanjang: 'Perkiraan penambahan panjang dalam meter. Contoh: 10',
-    lebar: 'Lebar groin dalam meter (angka). Contoh: 3',
+    lebar: 'Lebar breakwater dalam meter (angka). Contoh: 5',
     rencanaPengembanganLebar: 'Perkiraan penambahan lebar dalam meter. Contoh: 1',
-    elevasi: 'Elevasi puncak groin terhadap muka air (meter).',
-    jumlahGroin: 'Jumlah groin yang ada (angka).',
-    jarakGroin: 'Jarak antar groin (meter).',
+    elevasi: 'Elevasi puncak breakwater terhadap muka air (meter).',
     keteranganKonstruksi: KETERANGAN_KONSTRUKSI_TIP,
     kondisi: KONDISI_TIP,
     sumberDana: 'Asal pendanaan (APBN, APBD, Hibah, dsb).',
@@ -67,10 +63,10 @@ const FasilitasPokokGroin = () => {
   const toggleTip = (key) => setOpenTip(prev => (prev === key ? null : key))
 
   const isRequiredEmpty = createIsRequiredEmpty(formData, {
-    textKeys: ['pelabuhan','tahunPembuatan','jenisKonstruksi','sumberDana','nilai','kondisi'],
-    numericKeys: ['panjang','lebar','elevasi','jumlahGroin','jarakGroin','rencanaPengembanganPanjang','rencanaPengembanganLebar']
+    textKeys: ['pelabuhan','tahunPembuatan','jenisKonstruksi','kondisi','sumberDana','nilai'],
+    numericKeys: ['panjang','lebar','elevasi','rencanaPengembanganPanjang','rencanaPengembanganLebar']
   })
-  const saveDisabled = createIsSaveDisabled(isRequiredEmpty, ['pelabuhan','tahunPembuatan','jenisKonstruksi','panjang','lebar','elevasi','jumlahGroin','jarakGroin','sumberDana','nilai','kondisi','rencanaPengembanganPanjang','rencanaPengembanganLebar'])
+  const saveDisabled = createIsSaveDisabled(isRequiredEmpty, ['pelabuhan','tahunPembuatan','jenisKonstruksi','panjang','lebar','elevasi','rencanaPengembanganPanjang','rencanaPengembanganLebar','kondisi','sumberDana','nilai'])
 
   const formatThousands = (value) => {
     const digits = String(value).replace(/\D/g, '')
@@ -141,8 +137,6 @@ const FasilitasPokokGroin = () => {
       lebar: '',
       rencanaPengembanganLebar: '',
       elevasi: '',
-      jumlahGroin: '',
-      jarakGroin: '',
       keteranganKonstruksi: '',
       kondisi: '',
       sumberDana: '',
@@ -170,7 +164,7 @@ const FasilitasPokokGroin = () => {
   const handleClosePreview = () => setShowPreview(false)
 
   const submitData = async () => {
-    console.log('Konfirmasi Simpan Data (Groin):', formData)
+    console.log('Konfirmasi Simpan Data (Breakwater):', formData)
     setShowPreview(false)
     setConfirmOpen(false)
   }
@@ -178,8 +172,8 @@ const FasilitasPokokGroin = () => {
   return (
     <div className="section-card">
       <FormHeader
-        title="Fasilitas Pokok - Groin"
-        description="Form untuk mengelola data fasilitas pokok groin"
+        title="Fasilitas Pokok - Breakwater"
+        description="Form untuk mengelola data fasilitas pokok breakwater"
         rightSlot={(
           <div className={`form-group ${isRequiredEmpty('pelabuhan') ? 'error' : ''} ${isRequiredEmpty('pelabuhan') && doShake ? 'shake' : ''}`} style={{ position: 'relative', margin: 0 }} onMouseLeave={() => setOpenTip(null)}>
             <label className="form-label" style={{ fontSize: 14, marginBottom: 6 }}>Pelabuhan <span className="required-mark">*</span>
@@ -225,15 +219,15 @@ const FasilitasPokokGroin = () => {
                 <button onClick={() => setOpenTip(null)} aria-label="Tutup" style={{ position: 'absolute', top: 4, right: 6, background: 'transparent', border: 'none', color: '#6b7280', cursor: 'pointer' }}>✕</button>
               </div>
             )}
-            <select name="tahunPembuatan" value={formData.tahunPembuatan} onChange={handleInputChange} className="form-select" required>
+            <select name="tahunPembuatan" value={formData.tahunPembuatan} onChange={handleInputChange} className="form-select">
               <option value="">Pilih Tahun</option>
-              {yearOptions.map(y => (<option key={y} value={y}>{y}</option>))}
+              {yearOptions.map((y) => (<option key={y} value={y}>{y}</option>))}
             </select>
           </div>
 
-          {/* Jenis Fasilitas dihapus sesuai standar halaman Groin */}
+          {/* Jenis Fasilitas dihapus sesuai standar baru */}
 
-          {/* Keterangan Rehab ditangani oleh komponen footer standar */}
+          {/* Footer standar akan menangani Keterangan Rehab */}
 
           <div className={`form-group ${isRequiredEmpty('jenisKonstruksi') ? 'error' : ''} ${isRequiredEmpty('jenisKonstruksi') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
             <label className="form-label">Jenis <span className="required-mark">*</span>
@@ -245,12 +239,12 @@ const FasilitasPokokGroin = () => {
                 <button onClick={() => setOpenTip(null)} aria-label="Tutup" style={{ position: 'absolute', top: 4, right: 6, background: 'transparent', border: 'none', color: '#6b7280', cursor: 'pointer' }}>✕</button>
               </div>
             )}
-            <select name="jenisKonstruksi" value={formData.jenisKonstruksi} onChange={handleInputChange} className="form-select" required>
+            <select name="jenisKonstruksi" value={formData.jenisKonstruksi} onChange={handleInputChange} className="form-select">
               <option value="">Pilih Jenis Konstruksi</option>
               <option value="Beton">Beton</option>
               <option value="Batu">Batu</option>
-              <option value="Kayu">Kayu</option>
               <option value="Gabion">Gabion</option>
+              <option value="Campuran">Campuran</option>
             </select>
           </div>
 
@@ -264,7 +258,7 @@ const FasilitasPokokGroin = () => {
                 <button onClick={() => setOpenTip(null)} aria-label="Tutup" style={{ position: 'absolute', top: 4, right: 6, background: 'transparent', border: 'none', color: '#6b7280', cursor: 'pointer' }}>✕</button>
               </div>
             )}
-            <input type="number" name="panjang" value={formData.panjang} onChange={handleInputChange} className="form-input" placeholder="Contoh: 50" step="0.01" min="0" required />
+            <input type="number" name="panjang" value={formData.panjang} onChange={handleInputChange} className="form-input" placeholder="Contoh: 120" />
           </div>
 
           <div className={`form-group ${isRequiredEmpty('rencanaPengembanganPanjang') ? 'error' : ''} ${isRequiredEmpty('rencanaPengembanganPanjang') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
@@ -277,7 +271,7 @@ const FasilitasPokokGroin = () => {
                 <button onClick={() => setOpenTip(null)} aria-label="Tutup" style={{ position: 'absolute', top: 4, right: 6, background: 'transparent', border: 'none', color: '#6b7280', cursor: 'pointer' }}>✕</button>
               </div>
             )}
-            <input type="number" name="rencanaPengembanganPanjang" value={formData.rencanaPengembanganPanjang} onChange={handleInputChange} className="form-input" placeholder="Contoh: 10" step="0.01" min="0" required />
+            <input type="number" name="rencanaPengembanganPanjang" value={formData.rencanaPengembanganPanjang} onChange={handleInputChange} className="form-input" placeholder="Contoh: 10" required />
           </div>
 
           <div className={`form-group ${isRequiredEmpty('lebar') ? 'error' : ''} ${isRequiredEmpty('lebar') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
@@ -290,7 +284,7 @@ const FasilitasPokokGroin = () => {
                 <button onClick={() => setOpenTip(null)} aria-label="Tutup" style={{ position: 'absolute', top: 4, right: 6, background: 'transparent', border: 'none', color: '#6b7280', cursor: 'pointer' }}>✕</button>
               </div>
             )}
-            <input type="number" name="lebar" value={formData.lebar} onChange={handleInputChange} className="form-input" placeholder="Contoh: 3" step="0.01" min="0" required />
+            <input type="number" name="lebar" value={formData.lebar} onChange={handleInputChange} className="form-input" placeholder="Contoh: 5" />
           </div>
 
           <div className={`form-group ${isRequiredEmpty('rencanaPengembanganLebar') ? 'error' : ''} ${isRequiredEmpty('rencanaPengembanganLebar') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
@@ -303,7 +297,7 @@ const FasilitasPokokGroin = () => {
                 <button onClick={() => setOpenTip(null)} aria-label="Tutup" style={{ position: 'absolute', top: 4, right: 6, background: 'transparent', border: 'none', color: '#6b7280', cursor: 'pointer' }}>✕</button>
               </div>
             )}
-            <input type="number" name="rencanaPengembanganLebar" value={formData.rencanaPengembanganLebar} onChange={handleInputChange} className="form-input" placeholder="Contoh: 1" step="0.01" min="0" required />
+            <input type="number" name="rencanaPengembanganLebar" value={formData.rencanaPengembanganLebar} onChange={handleInputChange} className="form-input" placeholder="Contoh: 1" required />
           </div>
 
           <div className={`form-group ${isRequiredEmpty('elevasi') ? 'error' : ''} ${isRequiredEmpty('elevasi') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
@@ -316,36 +310,10 @@ const FasilitasPokokGroin = () => {
                 <button onClick={() => setOpenTip(null)} aria-label="Tutup" style={{ position: 'absolute', top: 4, right: 6, background: 'transparent', border: 'none', color: '#6b7280', cursor: 'pointer' }}>✕</button>
               </div>
             )}
-            <input type="number" name="elevasi" value={formData.elevasi} onChange={handleInputChange} className="form-input" placeholder="Contoh: 1.5" step="0.01" min="0" required />
+            <input type="number" name="elevasi" value={formData.elevasi} onChange={handleInputChange} className="form-input" placeholder="Contoh: 3.5" step="0.01" />
           </div>
 
-          <div className={`form-group ${isRequiredEmpty('jumlahGroin') ? 'error' : ''} ${isRequiredEmpty('jumlahGroin') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
-            <label className="form-label">Jumlah Groin <span className="required-mark">*</span>
-              <span className="tooltip-trigger" role="button" aria-label={TIPS.jumlahGroin} onMouseEnter={() => toggleTip('jumlahGroin')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
-            </label>
-            {openTip === 'jumlahGroin' && (
-              <div role="dialog" aria-label="Informasi pengisian" style={{ position: 'absolute', top: 6, right: 8, background: '#fff', color: '#111', border: '1px solid #e5e7eb', borderRadius: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.15)', padding: '8px 10px', maxWidth: 260, zIndex: 20 }}>
-                <div style={{ fontSize: 12 }}>{TIPS.jumlahGroin}</div>
-                <button onClick={() => setOpenTip(null)} aria-label="Tutup" style={{ position: 'absolute', top: 4, right: 6, background: 'transparent', border: 'none', color: '#6b7280', cursor: 'pointer' }}>✕</button>
-              </div>
-            )}
-            <input type="number" name="jumlahGroin" value={formData.jumlahGroin} onChange={handleInputChange} className="form-input" placeholder="Contoh: 5" step="1" min="0" required />
-          </div>
-
-          <div className={`form-group ${isRequiredEmpty('jarakGroin') ? 'error' : ''} ${isRequiredEmpty('jarakGroin') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
-            <label className="form-label">Jarak Groin (m) <span className="required-mark">*</span>
-              <span className="tooltip-trigger" role="button" aria-label={TIPS.jarakGroin} onMouseEnter={() => toggleTip('jarakGroin')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
-            </label>
-            {openTip === 'jarakGroin' && (
-              <div role="dialog" aria-label="Informasi pengisian" style={{ position: 'absolute', top: 6, right: 8, background: '#fff', color: '#111', border: '1px solid #e5e7eb', borderRadius: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.15)', padding: '8px 10px', maxWidth: 260, zIndex: 20 }}>
-                <div style={{ fontSize: 12 }}>{TIPS.jarakGroin}</div>
-                <button onClick={() => setOpenTip(null)} aria-label="Tutup" style={{ position: 'absolute', top: 4, right: 6, background: 'transparent', border: 'none', color: '#6b7280', cursor: 'pointer' }}>✕</button>
-              </div>
-            )}
-            <input type="number" name="jarakGroin" value={formData.jarakGroin} onChange={handleInputChange} className="form-input" placeholder="Contoh: 30" step="0.01" min="0" required />
-          </div>
-
-          {/* Keterangan Konstruksi dipindah ke komponen footer standar */}
+          {/* Footer standar akan menangani Keterangan Konstruksi */}
 
           <div className={`form-group ${isRequiredEmpty('kondisi') ? 'error' : ''} ${isRequiredEmpty('kondisi') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
             <label className="form-label">Kondisi <span className="required-mark">*</span>
@@ -384,7 +352,7 @@ const FasilitasPokokGroin = () => {
           </div>
 
           <div className={`form-group ${isRequiredEmpty('nilai') ? 'error' : ''} ${isRequiredEmpty('nilai') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
-            <label className="form-label">Nilai <span className="required-mark">*</span>
+            <label className="form-label">Nilai (Rp) <span className="required-mark">*</span>
               <span className="tooltip-trigger" role="button" aria-label={TIPS.nilai} onMouseEnter={() => toggleTip('nilai')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
             </label>
             {openTip === 'nilai' && (
@@ -393,18 +361,9 @@ const FasilitasPokokGroin = () => {
                 <button onClick={() => setOpenTip(null)} aria-label="Tutup" style={{ position: 'absolute', top: 4, right: 6, background: 'transparent', border: 'none', color: '#6b7280', cursor: 'pointer' }}>✕</button>
               </div>
             )}
-            <div className="input-affix">
-              <span className="affix-prefix">Rp</span>
-              <input type="text" name="nilai" value={formData.nilaiDisplay || ''} onChange={handleNilaiChange} className="form-input currency-input" placeholder="Contoh: 150.000.000" />
-            </div>
+            <input type="text" name="nilaiDisplay" value={formData.nilaiDisplay} onChange={handleNilaiChange} className="form-input" placeholder="Contoh: 1.250.000.000" inputMode="numeric" />
           </div>
 
-          {/* Keterangan Sumber Dana dipindah ke komponen footer standar */}
-
-          {/* Gambar dipindah ke komponen footer standar */}
-
-          {/* Aktif dipindah ke komponen footer standar */}
-          {/* Footer standar: Gambar, Keterangan Rehab, Keterangan Konstruksi, Keterangan Sumber Dana, Aktif */}
           <StandardFooterFields
             formData={formData}
             openTip={openTip}
@@ -416,6 +375,7 @@ const FasilitasPokokGroin = () => {
             fileInfo={fileInfo}
             imagePreview={imagePreview}
           />
+          {/* Footer standar menangani Keterangan Sumber Dana, Gambar, dan Aktif */}
         </div>
 
         <div className="form-actions">
@@ -453,15 +413,9 @@ const FasilitasPokokGroin = () => {
                 <div className={isRequiredEmpty('lebar') ? 'preview-item error' : 'preview-item'}>
                   <strong>Lebar (m):</strong> <span>{formData.lebar || '-'}</span>
                 </div>
-                <div className="preview-item"><strong>Rencana Pengembangan Lebar (m):</strong> <span>{formData.rencanaPengembanganLebar || '-'}</span></div>
+                <div className="preview-item"><strong>Rencana Pengembangan Lebar:</strong> <span>{formData.rencanaPengembanganLebar || '-'}</span></div>
                 <div className={isRequiredEmpty('elevasi') ? 'preview-item error' : 'preview-item'}>
                   <strong>Elevasi (m):</strong> <span>{formData.elevasi || '-'}</span>
-                </div>
-                <div className={isRequiredEmpty('jumlahGroin') ? 'preview-item error' : 'preview-item'}>
-                  <strong>Jumlah Groin:</strong> <span>{formData.jumlahGroin || '-'}</span>
-                </div>
-                <div className={isRequiredEmpty('jarakGroin') ? 'preview-item error' : 'preview-item'}>
-                  <strong>Jarak Groin (m):</strong> <span>{formData.jarakGroin || '-'}</span>
                 </div>
                 <div className="preview-item"><strong>Keterangan Konstruksi:</strong> <span>{formData.keteranganKonstruksi || '-'}</span></div>
                 <div className="preview-item"><strong>Kondisi:</strong> <span>{formData.kondisi || '-'}</span></div>
@@ -518,4 +472,4 @@ const FasilitasPokokGroin = () => {
   )
 }
 
-export default FasilitasPokokGroin
+export default FasilitasPokokBreakwater

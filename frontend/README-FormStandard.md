@@ -28,6 +28,8 @@ Halaman `Fasilitas Pokok - Jalan` (http://localhost:5173/fasilitas/pokok/jalan) 
 - Error state: `.form-group.error` (label merah, border merah, background `red-50`).
 - Animasi salah isi: `.form-group.error.shake`.
 - Utilitas validasi: `src/utils/formValidation.js` – gunakan `createIsRequiredEmpty` dan `createIsSaveDisabled`.
+- Standar field wajib lintas form ada di `src/utils/formStandards.js` → `STANDARD_REQUIRED_KEYS`. Saat ini mencakup: `jenisFasilitas`, `kondisi`, `rencanaPengembanganPanjang`, `rencanaPengembanganLebar`.
+- Untuk form baru, gabungkan required lokal dengan standar global menggunakan `mergeWithStandardRequired`.
 
 ## Tooltip "? Informasi"
 - Trigger: `.tooltip-trigger` (warna `--accent` saat hover).
@@ -41,13 +43,20 @@ Halaman `Fasilitas Pokok - Jalan` (http://localhost:5173/fasilitas/pokok/jalan) 
 ## Contoh Penggunaan Validasi
 ```js
 import { createIsRequiredEmpty, createIsSaveDisabled } from '../utils/formValidation'
+import { mergeWithStandardRequired } from '../utils/formStandards'
 
-const isRequiredEmpty = createIsRequiredEmpty(formData, {
+const required = mergeWithStandardRequired({
   textKeys: ['tahunPembuatan','jenisKonstruksi','pelabuhan','sumberDana'],
   numericKeys: ['bebanGandar','panjang','lebar'],
 })
 
-const isSaveDisabled = createIsSaveDisabled(isRequiredEmpty, ['tahunPembuatan','bebanGandar','jenisKonstruksi','pelabuhan','panjang','lebar','sumberDana'])
+const isRequiredEmpty = createIsRequiredEmpty(formData, required)
+
+const isSaveDisabled = createIsSaveDisabled(isRequiredEmpty, [
+  'tahunPembuatan','bebanGandar','jenisKonstruksi','pelabuhan','panjang','lebar','sumberDana',
+  // berikut akan otomatis ada di required karena standar global:
+  'jenisFasilitas','kondisi','rencanaPengembanganPanjang','rencanaPengembanganLebar'
+])
 ```
 
 Dengan pedoman ini, semua form baru dapat mengikuti tampilan dan perilaku yang sudah FIX di halaman referensi tanpa mengubah halaman tersebut.
