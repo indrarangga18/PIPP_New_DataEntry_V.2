@@ -1,0 +1,6 @@
+:root{--brand-1:#0052A3;--brand-2:#00AEEF;--accent:#F4D03F;--muted:#6b7280}
+.breadcrumb{display:flex;align-items:center;gap:8px;margin:0 0 12px 0;color:#0b3c89;font-size:14px}
+.crumb{color:#0b3c89;text-decoration:none;font-weight:600}
+.crumb:hover{color:#0052A3}
+.sep{color:var(--muted)}
+.current{color:#374151;font-weight:700}

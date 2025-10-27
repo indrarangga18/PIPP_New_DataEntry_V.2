@@ -1,0 +1,44 @@
+.fp-form{margin-top:12px}
+.fp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.fp-field{position:relative;display:flex;flex-direction:column;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:12px}
+.fp-col-span-2{grid-column:span 2}
+.fp-label{font-size:14px;font-weight:600;color:#fff;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.req{color:#f59e0b}
+.fp-help{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:rgba(245,158,11,0.18);color:#f59e0b;font-weight:700;margin-left:auto;cursor:help;position:absolute;top:12px;right:12px}
+.fp-help:hover::after{content:attr(aria-label);position:absolute;top:24px;right:0;background:rgba(17,24,39,0.96);color:#fff;border:1px solid rgba(255,255,255,0.12);padding:8px 10px;border-radius:8px;font-size:12px;line-height:1.4;max-width:280px;box-shadow:0 12px 24px rgba(0,0,0,0.25);z-index:20}
+
+.fp-field input[type="text"],
+.fp-field input[type="number"],
+.fp-field select,
+.fp-field textarea,
+.fp-dual input{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);color:#fff;border-radius:8px;padding:10px 12px;font-size:14px}
+.fp-field input::placeholder{color:#cbd5e1}
+.fp-field textarea{resize:vertical}
+.fp-field input[type="file"]{background:transparent;border:none;padding:0}
+
+.fp-dual{display:flex;gap:8px}
+.fp-dual input[type="date"]{flex:0 0 180px}
+.fp-dual input[type="text"]{flex:1}
+.fp-hint{margin-top:6px;color:#93c5fd;font-size:12px}
+
+.fp-preview{margin-top:8px}
+.fp-preview img{max-width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.12)}
+
+/* Switch */
+.fp-switch{display:inline-flex;align-items:center;gap:8px}
+.fp-switch input{display:none}
+.fp-switch .slider{position:relative;width:46px;height:24px;background:#334155;border-radius:999px;box-shadow:inset 0 2px 6px rgba(0,0,0,0.25)}
+.fp-switch .slider::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s ease}
+.fp-switch input:checked + .slider{background:#22c55e}
+.fp-switch input:checked + .slider::after{transform:translateX(22px)}
+.switch-label{color:#fff;font-size:13px}
+
+/* Actions */
+.fp-actions{margin-top:16px}
+.fp-actions button{min-width:120px}
+
+/* Responsive */
+@media(max-width:768px){
+  .fp-grid{grid-template-columns:1fr}
+  .fp-col-span-2{grid-column:span 1}
+}
