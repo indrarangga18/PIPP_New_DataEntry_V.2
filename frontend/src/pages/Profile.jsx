@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Breadcrumb from '../components/Breadcrumb'
 
 export default function Profile(){
   const [user, setUser] = useState({ name: '-', email: '-' })
@@ -20,7 +19,6 @@ export default function Profile(){
 
   return (
     <>
-      <Breadcrumb items={[{ label: 'Profil' }]} />
       <div className="section-card">
         <h2 className="section-title">Profil</h2>
         <p className="section-desc">Informasi pengguna dan pengaturan akun.</p>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
+import AutoBreadcrumb from '../components/AutoBreadcrumb'
 import './layout.css'
 
 export default function AppLayout({ children }) {
@@ -25,6 +26,7 @@ export default function AppLayout({ children }) {
         onClick={() => open && setOpen(false)}
       />
       <main className="content" onClick={() => open && setOpen(false)}>
+        <AutoBreadcrumb />
         {children}
       </main>
     </div>

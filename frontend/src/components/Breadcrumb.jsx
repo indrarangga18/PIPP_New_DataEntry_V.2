@@ -7,7 +7,7 @@ export default function Breadcrumb({ items = [] }) {
     <nav className="breadcrumb" aria-label="Breadcrumb">
       <NavLink to="/" className="crumb">Home</NavLink>
       {items.map((item, idx) => (
-        <span key={idx} className="sep">›</span>
+        <span key={idx} className="sep">&gt;</span>
       ))}
       {items.map((item, idx) => (
         item.to ? (

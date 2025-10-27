@@ -11,7 +11,7 @@
 .nav a.active{background:linear-gradient(135deg,var(--brand-1),var(--brand-2));color:white}
 .icon{width:22px;height:22px}
 @media(min-width:1024px){
-  .sidebar{position:sticky;top:var(--header-h);height:calc(100vh - var(--header-h));transform:none}
+  .sidebar{position:fixed;top:var(--header-h);left:0;height:calc(100vh - var(--header-h));transform:none}
   .sidebar.collapsed{width:56px}
   .sidebar.collapsed .nav a{justify-content:center;padding:6px 4px}
   .sidebar.collapsed .nav .label{display:none}

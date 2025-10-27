@@ -1,6 +1,6 @@
 :root{--brand-1:#0052A3;--brand-2:#00AEEF;--accent:#F4D03F;--muted:#6b7280}
-.breadcrumb{display:flex;align-items:center;gap:8px;margin:0 0 12px 0;color:#0b3c89;font-size:14px}
-.crumb{color:#0b3c89;text-decoration:none;font-weight:600}
-.crumb:hover{color:#0052A3}
-.sep{color:var(--muted)}
-.current{color:#374151;font-weight:700}
+.breadcrumb{display:flex;align-items:center;gap:8px;margin:16px 0 12px 0;color:#374151;font-size:14px;white-space:nowrap}
+.crumb{color:#0b3c89;text-decoration:none;font-weight:600;transition:color .2s ease,text-decoration-color .2s ease}
+.crumb:hover{color:#0052A3;text-decoration:underline;text-underline-offset:3px}
+.crumb.current{color:#08114B;font-weight:800}
+.sep{color:var(--muted);margin:0 6px}

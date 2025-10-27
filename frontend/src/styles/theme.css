@@ -1,0 +1,29 @@
+:root {
+  /* Brand palette */
+  --brand-1: #0052A3;
+  --brand-2: #00AEEF;
+  --primary-strong: #08114B; /* warna kuat untuk crumb aktif & aksen penting */
+  --accent: #F4D03F;
+
+  /* Text & surfaces */
+  --text: #111827; /* gray-900 */
+  --muted: #6b7280; /* slate-500 */
+  --bg: #f9fafb; /* slate-50 */
+
+  /* Layout helpers */
+  --header-h: 68px;
+}
+
+@media (min-width: 1024px) {
+  :root { --header-h: 72px; }
+}
+
+/* Catatan standar:
+   - Font: system-ui stack, ukuran default 14px untuk form controls
+   - Warna utama: --primary-strong untuk highlight, brand gradient untuk header/tombol
+   - Breadcrumb: separator '>' dan crumb aktif pakai --primary-strong
+   - Field wajib: .required-mark merah (#ef4444), error border merah, shake animasi
+   - Tooltip '?': .tooltip-trigger gunakan --accent saat hover
+   - Background kartu/form: putih, section-card dengan shadow lembut
+   - Preview modal: grid mirip form, tombol 'Simpan' -> konfirmasi popup
+*/

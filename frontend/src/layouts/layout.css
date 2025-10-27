@@ -6,7 +6,7 @@ body{margin:0;background:linear-gradient(180deg,rgba(36,99,235,0.06),rgba(106,17
 .app{display:flex;flex-direction:column;min-height:100vh}
 .content{padding:16px;margin-left:0;padding-top:var(--header-h)}
 @media(min-width:1024px){:root{--header-h:72px}}
-@media(min-width:1024px){.sidebar-open .content{margin-left:280px}}
+@media(min-width:1024px){.content{margin-left:280px}}
 @media(min-width:1024px){.sidebar-collapsed .content{margin-left:56px}}
 .section-card{background:white;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.08);padding:16px;color:var(--text)}
 .section-title{margin:0 0 10px 0;font-size:18px}
