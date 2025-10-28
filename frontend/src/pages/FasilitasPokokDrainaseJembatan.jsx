@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../styles/fasilitas-form.css'
 import FormHeader from '../components/FormHeader'
-import SearchableSelect from '../components/SearchableSelect'
+import SmartSelect from '../components/SmartSelect'
 import StandardFooterFields from '../components/StandardFooterFields'
 import { isEmpty, createIsRequiredEmpty, createIsSaveDisabled } from '../utils/formValidation'
 import { KONDISI_OPTIONS, KETERANGAN_KONSTRUKSI_TIP, KONDISI_TIP, PELABUHAN_OPTIONS, SUMBER_DANA_OPTIONS } from '../utils/formStandards'
@@ -199,11 +199,12 @@ const FasilitasPokokDrainaseJembatan = () => {
                 <button onClick={() => setOpenTip(null)} aria-label="Tutup" style={{ position: 'absolute', top: 4, right: 6, background: 'transparent', border: 'none', color: '#6b7280', cursor: 'pointer' }}>✕</button>
               </div>
             )}
-            <SearchableSelect
+            <SmartSelect
               name="pelabuhan"
               value={formData.pelabuhan}
               onChange={handleInputChange}
-              options={PELABUHAN_OPTIONS}
+              category="pelabuhan"
+              baseOptions={PELABUHAN_OPTIONS}
               className="form-select"
               required
               style={{ fontSize: 14 }}
@@ -388,9 +389,9 @@ const FasilitasPokokDrainaseJembatan = () => {
           />
         </div>
 
-        <div className="form-actions">
-          <button type="button" onClick={handleOpenPreview} className="btn btn-primary">Simpan Data</button>
-          <button type="button" onClick={handleReset} className="btn btn-secondary">Reset Form</button>
+  <div className="form-actions">
+          <button type="button" onClick={handleOpenPreview} className="btn btn-primary btn-lg btn-wide">Simpan Data</button>
+          <button type="button" onClick={handleReset} className="btn btn-secondary btn-lg btn-wide">Hapus Isian</button>
         </div>
       </form>
 

@@ -379,8 +379,8 @@ const FasilitasPokokBreakwater = () => {
         </div>
 
         <div className="form-actions">
-          <button type="button" onClick={handleOpenPreview} className="btn btn-primary">Simpan Data</button>
-          <button type="button" onClick={handleReset} className="btn btn-secondary">Reset Form</button>
+          <button type="button" onClick={handleOpenPreview} className="btn btn-primary btn-lg btn-wide">Simpan Data</button>
+          <button type="button" onClick={handleReset} className="btn btn-secondary btn-lg btn-wide">Hapus Isian</button>
         </div>
       </form>
 
