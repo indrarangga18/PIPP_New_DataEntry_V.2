@@ -6,21 +6,22 @@ import StandardFooterFields from '../components/StandardFooterFields'
 import { createIsRequiredEmpty, createIsSaveDisabled } from '../utils/formValidation'
 import { PELABUHAN_OPTIONS, SUMBER_DANA_OPTIONS } from '../utils/formStandards'
 
-const FasilitasPokokTanah = () => {
+const FasilitasPenunjangFasilitasSosialUmum = () => {
   const [formData, setFormData] = useState({
     pelabuhan: '',
     tahunPembuatan: '',
-    keteranganRehab: '',
-    bebanGandar: '',
-    jenisTanah: '',
-    panjang: '',
-    rencanaPengembanganPanjang: '',
-    lebar: '',
-    rencanaPengembanganLebar: '',
-    keteranganKonstruksi: '',
+    fasilitasUmum: '',
+    jenisKonstruksi: '',
+    luas: '',
+    rencanaPengembanganLuas: '',
+    jumlah: '',
+    rencanaPengembanganJumlah: '',
     sumberDana: '',
     nilai: '',
     nilaiDisplay: '',
+    keterangan: '',
+    keteranganRehab: '',
+    keteranganKonstruksi: '',
     keteranganSumberDana: '',
     gambar: null,
     aktif: true,
@@ -36,31 +37,41 @@ const FasilitasPokokTanah = () => {
   const MIN_YEAR = 1950
   const yearOptions = Array.from({ length: CURRENT_YEAR - MIN_YEAR + 1 }, (_, i) => String(CURRENT_YEAR - i))
 
-  const JENIS_TANAH_OPTIONS = ['Lempung', 'Lempung Berpasir', 'Pasir', 'Lanau', 'Kerikil', 'Batu']
+  const FASILITAS_UMUM_OPTIONS = [
+    'Guest House',
+    'Kios IPTEK',
+    'Kios Nelayan/Toko/Waserda',
+    'Klinik Kesehatan MCK',
+    'Penginapan Nelayan',
+    'Showroom Hasil Produk Perikanan',
+    'Tempat Peribadatan',
+  ]
+  const JENIS_KONSTRUKSI_OPTIONS = ['Beton', 'Baja', 'Kayu', 'Campuran', 'Semi Permanen', 'Permanen']
 
   const TIPS = {
     pelabuhan: 'Pilih pelabuhan tempat fasilitas berada.',
     tahunPembuatan: 'Tahun pembuatan (tahun saja).',
-    keteranganRehab: 'Keterangan rehabilitasi jika ada.',
-    bebanGandar: 'Beban gandar (angka).',
-    jenisTanah: 'Pilih jenis tanah.',
-    panjang: 'Panjang dalam meter.',
-    rencanaPengembanganPanjang: 'Rencana penambahan panjang dalam meter.',
-    lebar: 'Lebar dalam meter.',
-    rencanaPengembanganLebar: 'Rencana penambahan lebar dalam meter.',
-    keteranganKonstruksi: 'Keterangan detail konstruksi.',
-    sumberDana: 'Sumber pendanaan.',
-    nilai: 'Nilai anggaran dalam Rupiah.',
-    keteranganSumberDana: 'Keterangan tambahan sumber dana.',
+    fasilitasUmum: 'Pilih jenis fasilitas umum.',
+    jenisKonstruksi: 'Pilih jenis konstruksi.',
+    luas: 'Luas total area (m²).',
+    rencanaPengembanganLuas: 'Rencana pengembangan luas (m²).',
+    jumlah: 'Jumlah unit fasilitas.',
+    rencanaPengembanganJumlah: 'Rencana pengembangan jumlah unit.',
+    sumberDana: 'Pilih sumber dana pembangunan/pengelolaan.',
+    nilai: 'Nilai anggaran (Rp).',
+    keterangan: 'Keterangan tambahan terkait fasilitas.',
+    keteranganRehab: 'Keterangan pekerjaan rehab jika ada.',
+    keteranganKonstruksi: 'Catatan teknis konstruksi.',
+    keteranganSumberDana: 'Detail tambahan terkait sumber dana.',
     gambar: 'Unggah foto atau PDF. Maks 10MB.',
-    aktif: 'Tandai aktif bila masih berlaku.'
+    aktif: 'Tandai aktif bila fasilitas masih berlaku.'
   }
 
   const isRequiredEmpty = createIsRequiredEmpty(formData, {
-    textKeys: ['pelabuhan','tahunPembuatan','jenisTanah','sumberDana'],
-    numericKeys: ['bebanGandar','panjang','lebar']
+    textKeys: ['pelabuhan','tahunPembuatan','fasilitasUmum','jenisKonstruksi','sumberDana'],
+    numericKeys: ['luas']
   })
-  const saveDisabled = createIsSaveDisabled(isRequiredEmpty, ['pelabuhan','tahunPembuatan','bebanGandar','jenisTanah','panjang','lebar','sumberDana'])
+  const saveDisabled = createIsSaveDisabled(isRequiredEmpty, ['pelabuhan','tahunPembuatan','fasilitasUmum','jenisKonstruksi','luas','sumberDana'])
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -96,8 +107,8 @@ const FasilitasPokokTanah = () => {
   return (
     <div className="section-card">
       <FormHeader
-        title="Fasilitas Pokok - Tanah"
-        description="Form untuk mengelola data tanah"
+        title="Fasilitas Penunjang - Fasilitas Sosial dan Umum"
+        description="Form Fasilitas Sosial dan Umum"
         rightSlot={(
           <div className={`form-group ${isRequiredEmpty('pelabuhan') ? 'error' : ''} ${isRequiredEmpty('pelabuhan') && doShake ? 'shake' : ''}`} style={{ position: 'relative', margin: 0 }} onMouseLeave={() => setOpenTip(null)}>
             <label className="form-label" style={{ fontSize: 14, marginBottom: 6 }}>Pelabuhan <span className="required-mark">*</span>
@@ -109,7 +120,17 @@ const FasilitasPokokTanah = () => {
                 <button onClick={() => setOpenTip(null)} aria-label="Tutup" style={{ position: 'absolute', top: 4, right: 6, background: 'transparent', border: 'none', color: '#6b7280', cursor: 'pointer' }}>✕</button>
               </div>
             )}
-            <SmartSelect name="pelabuhan" value={formData.pelabuhan} onChange={handleInputChange} category="pelabuhan" baseOptions={PELABUHAN_OPTIONS} className="form-select" required style={{ fontSize: 14 }} placeholder="Cari atau pilih pelabuhan..." />
+            <SmartSelect
+              name="pelabuhan"
+              value={formData.pelabuhan}
+              onChange={handleInputChange}
+              category="pelabuhan"
+              baseOptions={PELABUHAN_OPTIONS}
+              className="form-select"
+              required
+              style={{ fontSize: 14 }}
+              placeholder="Cari atau pilih pelabuhan..."
+            />
           </div>
         )}
         selectedLabel={formData.pelabuhan ? 'Pelabuhan Terpilih:' : null}
@@ -118,7 +139,6 @@ const FasilitasPokokTanah = () => {
 
       <form className="fasilitas-form" onSubmit={(e) => e.preventDefault()}>
         <div className="form-grid">
-          {/* Tahun di awal (standar) */}
           <div className={`form-group ${isRequiredEmpty('tahunPembuatan') ? 'error' : ''} ${isRequiredEmpty('tahunPembuatan') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
             <label className="form-label">Tahun <span className="required-mark">*</span>
               <span className="tooltip-trigger" role="button" aria-label={TIPS.tahunPembuatan} onMouseEnter={() => setOpenTip('tahunPembuatan')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
@@ -135,81 +155,94 @@ const FasilitasPokokTanah = () => {
             </select>
           </div>
 
-          {/* Jenis di urutan kedua (standar) */}
-          <div className={`form-group ${isRequiredEmpty('jenisTanah') ? 'error' : ''} ${isRequiredEmpty('jenisTanah') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
-            <label className="form-label">Jenis <span className="required-mark">*</span>
-              <span className="tooltip-trigger" role="button" aria-label={TIPS.jenisTanah} onMouseEnter={() => setOpenTip('jenisTanah')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
+          <div className={`form-group ${isRequiredEmpty('fasilitasUmum') ? 'error' : ''} ${isRequiredEmpty('fasilitasUmum') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
+            <label className="form-label">Fasilitas Umum <span className="required-mark">*</span>
+              <span className="tooltip-trigger" role="button" aria-label={TIPS.fasilitasUmum} onMouseEnter={() => setOpenTip('fasilitasUmum')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
             </label>
-            <select name="jenisTanah" value={formData.jenisTanah} onChange={handleInputChange} className="form-select" required>
-              <option value="">Pilih Jenis</option>
-              {JENIS_TANAH_OPTIONS.map(opt => (<option key={opt} value={opt}>{opt}</option>))}
-            </select>
+            <SmartSelect
+              name="fasilitasUmum"
+              value={formData.fasilitasUmum}
+              onChange={handleInputChange}
+              category="jenisFasilitasUmum"
+              baseOptions={FASILITAS_UMUM_OPTIONS}
+              className="form-select"
+              required
+              placeholder="Pilih Fasilitas Umum"
+            />
           </div>
 
-          <div className={`form-group ${isRequiredEmpty('bebanGandar') ? 'error' : ''} ${isRequiredEmpty('bebanGandar') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
-            <label className="form-label">Beban Gandar <span className="required-mark">*</span>
-              <span className="tooltip-trigger" role="button" aria-label={TIPS.bebanGandar} onMouseEnter={() => setOpenTip('bebanGandar')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
+          <div className={`form-group ${isRequiredEmpty('jenisKonstruksi') ? 'error' : ''} ${isRequiredEmpty('jenisKonstruksi') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
+            <label className="form-label">Jenis Konstruksi <span className="required-mark">*</span>
+              <span className="tooltip-trigger" role="button" aria-label={TIPS.jenisKonstruksi} onMouseEnter={() => setOpenTip('jenisKonstruksi')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
             </label>
-            <input type="number" name="bebanGandar" value={formData.bebanGandar} onChange={handleInputChange} className="form-input" required />
+            <SmartSelect
+              name="jenisKonstruksi"
+              value={formData.jenisKonstruksi}
+              onChange={handleInputChange}
+              category="jenisKonstruksi"
+              baseOptions={JENIS_KONSTRUKSI_OPTIONS}
+              className="form-select"
+              required
+              placeholder="Pilih Jenis Konstruksi"
+            />
           </div>
 
-          <div className={`form-group`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
-            <label className="form-label">Keterangan Rehab
-              <span className="tooltip-trigger" role="button" aria-label={TIPS.keteranganRehab} onMouseEnter={() => setOpenTip('keteranganRehab')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
+          <div className={`form-group ${isRequiredEmpty('luas') ? 'error' : ''} ${isRequiredEmpty('luas') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
+            <label className="form-label">Luas (m²) <span className="required-mark">*</span>
+              <span className="tooltip-trigger" role="button" aria-label={TIPS.luas} onMouseEnter={() => setOpenTip('luas')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
             </label>
-            <textarea name="keteranganRehab" value={formData.keteranganRehab} onChange={handleInputChange} className="form-textarea" rows={2} />
-          </div>
-
-          <div className={`form-group ${isRequiredEmpty('panjang') ? 'error' : ''} ${isRequiredEmpty('panjang') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
-            <label className="form-label">Panjang (m) <span className="required-mark">*</span>
-              <span className="tooltip-trigger" role="button" aria-label={TIPS.panjang} onMouseEnter={() => setOpenTip('panjang')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
-            </label>
-            <input type="number" step="0.01" name="panjang" value={formData.panjang} onChange={handleInputChange} className="form-input" required />
-          </div>
-
-          <div className="form-group" style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
-            <label className="form-label">Rencana Pengembangan Panjang (m)
-              <span className="tooltip-trigger" role="button" aria-label={TIPS.rencanaPengembanganPanjang} onMouseEnter={() => setOpenTip('rencanaPengembanganPanjang')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
-            </label>
-            <input type="number" step="0.01" name="rencanaPengembanganPanjang" value={formData.rencanaPengembanganPanjang} onChange={handleInputChange} className="form-input" />
-          </div>
-
-          <div className={`form-group ${isRequiredEmpty('lebar') ? 'error' : ''} ${isRequiredEmpty('lebar') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
-            <label className="form-label">Lebar (m) <span className="required-mark">*</span>
-              <span className="tooltip-trigger" role="button" aria-label={TIPS.lebar} onMouseEnter={() => setOpenTip('lebar')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
-            </label>
-            <input type="number" step="0.01" name="lebar" value={formData.lebar} onChange={handleInputChange} className="form-input" required />
+            <input type="number" step="0.01" name="luas" value={formData.luas} onChange={handleInputChange} className="form-input" required />
           </div>
 
           <div className="form-group" style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
-            <label className="form-label">Rencana Pengembangan Lebar (m)
-              <span className="tooltip-trigger" role="button" aria-label={TIPS.rencanaPengembanganLebar} onMouseEnter={() => setOpenTip('rencanaPengembanganLebar')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
+            <label className="form-label">Rencana Pengembangan (Luas)
+              <span className="tooltip-trigger" role="button" aria-label={TIPS.rencanaPengembanganLuas} onMouseEnter={() => setOpenTip('rencanaPengembanganLuas')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
             </label>
-            <input type="number" step="0.01" name="rencanaPengembanganLebar" value={formData.rencanaPengembanganLebar} onChange={handleInputChange} className="form-input" />
+            <input type="number" step="0.01" name="rencanaPengembanganLuas" value={formData.rencanaPengembanganLuas} onChange={handleInputChange} className="form-input" />
           </div>
 
           <div className="form-group" style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
-            <label className="form-label">Keterangan Konstruksi
-              <span className="tooltip-trigger" role="button" aria-label={TIPS.keteranganKonstruksi} onMouseEnter={() => setOpenTip('keteranganKonstruksi')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
+            <label className="form-label">Jumlah
+              <span className="tooltip-trigger" role="button" aria-label={TIPS.jumlah} onMouseEnter={() => setOpenTip('jumlah')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
             </label>
-            <textarea name="keteranganKonstruksi" value={formData.keteranganKonstruksi} onChange={handleInputChange} className="form-textarea" rows={2} />
+            <input type="number" name="jumlah" value={formData.jumlah} onChange={handleInputChange} className="form-input" />
+          </div>
+
+          <div className="form-group" style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
+            <label className="form-label">Rencana Pengembangan (Jumlah)
+              <span className="tooltip-trigger" role="button" aria-label={TIPS.rencanaPengembanganJumlah} onMouseEnter={() => setOpenTip('rencanaPengembanganJumlah')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
+            </label>
+            <input type="number" name="rencanaPengembanganJumlah" value={formData.rencanaPengembanganJumlah} onChange={handleInputChange} className="form-input" />
           </div>
 
           <div className={`form-group ${isRequiredEmpty('sumberDana') ? 'error' : ''} ${isRequiredEmpty('sumberDana') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
             <label className="form-label">Sumber Dana <span className="required-mark">*</span>
               <span className="tooltip-trigger" role="button" aria-label={TIPS.sumberDana} onMouseEnter={() => setOpenTip('sumberDana')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
             </label>
-            <select name="sumberDana" value={formData.sumberDana} onChange={handleInputChange} className="form-select" required>
-              <option value="">Pilih Sumber Dana</option>
-              {SUMBER_DANA_OPTIONS.map(opt => (<option key={opt} value={opt}>{opt}</option>))}
-            </select>
+            <SmartSelect
+              name="sumberDana"
+              value={formData.sumberDana}
+              onChange={handleInputChange}
+              category="sumberDana"
+              baseOptions={SUMBER_DANA_OPTIONS}
+              className="form-select"
+              required
+              placeholder="Pilih Sumber Dana"
+            />
           </div>
 
-          <div className="form-group" style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
-            <label className="form-label">Nilai
+          <div className={`form-group ${false ? 'error' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
+            <label className="form-label">Nilai (Rp)
               <span className="tooltip-trigger" role="button" aria-label={TIPS.nilai} onMouseEnter={() => setOpenTip('nilai')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
             </label>
             <input type="text" name="nilai" value={formData.nilaiDisplay || ''} onChange={handleInputChange} className="form-input" placeholder="Masukkan nilai (Rupiah)" />
+          </div>
+
+          <div className="form-group full-width" style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
+            <label className="form-label">Keterangan
+              <span className="tooltip-trigger" role="button" aria-label={TIPS.keterangan} onMouseEnter={() => setOpenTip('keterangan')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
+            </label>
+            <textarea name="keterangan" value={formData.keterangan} onChange={handleInputChange} className="form-input" rows={3} placeholder="Keterangan tambahan" />
           </div>
 
           <StandardFooterFields
@@ -229,4 +262,4 @@ const FasilitasPokokTanah = () => {
   )
 }
 
-export default FasilitasPokokTanah
+export default FasilitasPenunjangFasilitasSosialUmum

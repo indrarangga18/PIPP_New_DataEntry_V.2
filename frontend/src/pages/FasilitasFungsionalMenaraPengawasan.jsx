@@ -6,7 +6,7 @@ import StandardFooterFields from '../components/StandardFooterFields'
 import { createIsRequiredEmpty, createIsSaveDisabled } from '../utils/formValidation'
 import { PELABUHAN_OPTIONS } from '../utils/formStandards'
 
-const FasilitasPokokSaranaBantuNavigasi = () => {
+const FasilitasFungsionalMenaraPengawasan = () => {
   const [formData, setFormData] = useState({
     pelabuhan: '',
     tahunPembuatan: '',
@@ -14,9 +14,6 @@ const FasilitasPokokSaranaBantuNavigasi = () => {
     jumlah: '',
     rencanaPengembanganJumlah: '',
     keteranganTeknis: '',
-    keteranganRehab: '',
-    keteranganKonstruksi: '',
-    keteranganSumberDana: '',
     gambar: null,
     aktif: true,
   })
@@ -31,18 +28,17 @@ const FasilitasPokokSaranaBantuNavigasi = () => {
   const MIN_YEAR = 1950
   const yearOptions = Array.from({ length: CURRENT_YEAR - MIN_YEAR + 1 }, (_, i) => String(CURRENT_YEAR - i))
 
+  const JENIS_FASILITAS_OPTIONS = ['Menara Rendah', 'Menara Sedang', 'Menara Tinggi', 'Pos Pengawasan']
+
   const TIPS = {
     pelabuhan: 'Pilih pelabuhan tempat fasilitas berada.',
-    tahunPembuatan: 'Pilih tahun pembuatan (tahun saja).',
-    jenisFasilitas: 'Pilih jenis sarana bantu navigasi.',
-    jumlah: 'Jumlah unit (angka).',
-    rencanaPengembanganJumlah: 'Rencana penambahan jumlah (angka).',
-    keteranganTeknis: 'Tuliskan keterangan teknis.",',
-    gambar: 'Unggah foto atau PDF terkait. Maks 10MB.',
-    aktif: 'Tandai aktif jika fasilitas masih digunakan/berlaku.',
-    keteranganRehab: 'Uraikan kegiatan rehab/pekerjaan jika ada.',
-    keteranganKonstruksi: 'Tuliskan keterangan konstruksi jika diperlukan.',
-    keteranganSumberDana: 'Detail tambahan terkait sumber dana jika diperlukan.'
+    tahunPembuatan: 'Tahun pembuatan (tahun saja).',
+    jenisFasilitas: 'Pilih jenis menara pengawasan.',
+    jumlah: 'Jumlah unit.',
+    rencanaPengembanganJumlah: 'Rencana penambahan jumlah unit.',
+    keteranganTeknis: 'Keterangan teknis fasilitas.',
+    gambar: 'Unggah foto atau PDF. Maks 10MB.',
+    aktif: 'Tandai aktif bila masih berlaku.'
   }
 
   const isRequiredEmpty = createIsRequiredEmpty(formData, {
@@ -53,7 +49,8 @@ const FasilitasPokokSaranaBantuNavigasi = () => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target
-    setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }))
+    const nextValue = type === 'checkbox' ? checked : value
+    setFormData(prev => ({ ...prev, [name]: nextValue }))
   }
 
   const handleFileChange = (e) => {
@@ -75,18 +72,11 @@ const FasilitasPokokSaranaBantuNavigasi = () => {
     }
   }
 
-  const handleOpenPreview = () => {
-    if (saveDisabled) {
-      setDoShake(true)
-      setTimeout(() => setDoShake(false), 600)
-    }
-  }
-
   return (
     <div className="section-card">
       <FormHeader
-        title="Fasilitas Pokok - Sarana Bantu Navigasi"
-        description="Form untuk mengelola data sarana bantu navigasi"
+        title="Fasilitas Fungsional - Menara Pengawasan"
+        description="Form untuk mengelola fasilitas menara pengawasan"
         rightSlot={(
           <div className={`form-group ${isRequiredEmpty('pelabuhan') ? 'error' : ''} ${isRequiredEmpty('pelabuhan') && doShake ? 'shake' : ''}`} style={{ position: 'relative', margin: 0 }} onMouseLeave={() => setOpenTip(null)}>
             <label className="form-label" style={{ fontSize: 14, marginBottom: 6 }}>Pelabuhan <span className="required-mark">*</span>
@@ -107,6 +97,7 @@ const FasilitasPokokSaranaBantuNavigasi = () => {
 
       <form className="fasilitas-form" onSubmit={(e) => e.preventDefault()}>
         <div className="form-grid">
+          {/* Tahun di awal (standar) */}
           <div className={`form-group ${isRequiredEmpty('tahunPembuatan') ? 'error' : ''} ${isRequiredEmpty('tahunPembuatan') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
             <label className="form-label">Tahun <span className="required-mark">*</span>
               <span className="tooltip-trigger" role="button" aria-label={TIPS.tahunPembuatan} onMouseEnter={() => setOpenTip('tahunPembuatan')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
@@ -123,24 +114,14 @@ const FasilitasPokokSaranaBantuNavigasi = () => {
             </select>
           </div>
 
+          {/* Jenis di urutan kedua (standar) */}
           <div className={`form-group ${isRequiredEmpty('jenisFasilitas') ? 'error' : ''} ${isRequiredEmpty('jenisFasilitas') && doShake ? 'shake' : ''}`} style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
-            <label className="form-label">Jenis <span className="required-mark">*</span>
+            <label className="form-label">Jenis Menara Pengawasan <span className="required-mark">*</span>
               <span className="tooltip-trigger" role="button" aria-label={TIPS.jenisFasilitas} onMouseEnter={() => setOpenTip('jenisFasilitas')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
             </label>
-            {openTip === 'jenisFasilitas' && (
-              <div role="dialog" aria-label="Informasi pengisian" style={{ position: 'absolute', top: 6, right: 8, background: '#fff', color: '#111', border: '1px solid #e5e7eb', borderRadius: 6, boxShadow: '0 8px 24px rgba(0,0,0,0.15)', padding: '8px 10px', maxWidth: 260, zIndex: 20 }}>
-                <div style={{ fontSize: 12 }}>{TIPS.jenisFasilitas}</div>
-                <button onClick={() => setOpenTip(null)} aria-label="Tutup" style={{ position: 'absolute', top: 4, right: 6, background: 'transparent', border: 'none', color: '#6b7280', cursor: 'pointer' }}>✕</button>
-              </div>
-            )}
             <select name="jenisFasilitas" value={formData.jenisFasilitas} onChange={handleInputChange} className="form-select" required>
-              <option value="">Pilih Jenis Fasilitas</option>
-              <option value="Internet">Internet</option>
-              <option value="Lampu Suar">Lampu Suar</option>
-              <option value="Line Telepon">Line Telepon</option>
-              <option value="Menara Pengawas">Menara Pengawas</option>
-              <option value="Radio SSB">Radio SSB</option>
-              <option value="Rambu-Rambu Pelayaran">Rambu-Rambu Pelayaran</option>
+              <option value="">Pilih Jenis</option>
+              {JENIS_FASILITAS_OPTIONS.map(opt => (<option key={opt} value={opt}>{opt}</option>))}
             </select>
           </div>
 
@@ -158,11 +139,11 @@ const FasilitasPokokSaranaBantuNavigasi = () => {
             <input type="number" name="rencanaPengembanganJumlah" value={formData.rencanaPengembanganJumlah} onChange={handleInputChange} className="form-input" />
           </div>
 
-          <div className="form-group full-width" style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
+          <div className="form-group" style={{ position: 'relative' }} onMouseLeave={() => setOpenTip(null)}>
             <label className="form-label">Keterangan Teknis
               <span className="tooltip-trigger" role="button" aria-label={TIPS.keteranganTeknis} onMouseEnter={() => setOpenTip('keteranganTeknis')} style={{ color: '#6b7280', fontWeight: 600, fontSize: 12, marginLeft: 6, cursor: 'help', padding: 0, display: 'inline-block' }}>?</span>
             </label>
-            <textarea name="keteranganTeknis" value={formData.keteranganTeknis} onChange={handleInputChange} className="form-input" rows={3} />
+            <textarea name="keteranganTeknis" value={formData.keteranganTeknis} onChange={handleInputChange} className="form-textarea" rows={2} />
           </div>
 
           <StandardFooterFields
@@ -182,4 +163,4 @@ const FasilitasPokokSaranaBantuNavigasi = () => {
   )
 }
 
-export default FasilitasPokokSaranaBantuNavigasi
+export default FasilitasFungsionalMenaraPengawasan

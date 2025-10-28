@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './sidebar.css'
 import { NavLink, useLocation } from 'react-router-dom'
 import {
@@ -38,6 +38,30 @@ export default function Sidebar({ open, collapsed, onClose }) {
     { to: '/distribusi-ikan', label: 'Distribusi Ikan', icon: TruckIcon },
     { to: '/usaha-pendapatan-pelabuhan', label: 'Usaha dan pendapatan Pelabuhan', icon: BanknotesIcon },
     { to: '/dokumen-pelabuhan-perikanan', label: 'Dokumen Pelabuhan Perikanan', icon: ClipboardDocumentListIcon },
+    {
+      key: 'pelabuhan',
+      label: 'Profil Pelabuhan',
+      icon: BuildingOfficeIcon,
+      submenu: [
+        { to: '/pelabuhan/kondisi-fisik', label: 'Kondisi fisik pelabuhan' },
+        { to: '/pelabuhan/data-umum', label: 'Data umum' },
+        { to: '/pelabuhan/informasi-wilayah', label: 'Informasi wilayah pelabuhan' },
+        { to: '/pelabuhan/akses', label: 'Akses pelabuhan' },
+        { to: '/pelabuhan/amenities', label: 'Amenities Pelabuhan' },
+        { to: '/pelabuhan/transportasi', label: 'Transportasi pelabuhan' },
+        { to: '/pelabuhan/pemangku-kepentingan', label: 'Pemangku kepentingan' },
+        { to: '/pelabuhan/masalah-upaya', label: 'Masalah dan upaya' },
+        { to: '/pelabuhan/monitoring-k5', label: 'Monitoring K5' },
+        { to: '/pelabuhan/kelembagaan-upt', label: 'Kelembagaan UPT pelabuhan' },
+        { to: '/pelabuhan/penyaluran-perbekalan', label: 'Penyaluran perbekalan' },
+        { to: '/pelabuhan/target-pnbp-sda', label: 'Target PNBP SDA' },
+        { to: '/pelabuhan/indeks-kepuasan-masyarakat', label: 'Indeks Kepuasan Masyarakat' },
+        { to: '/pelabuhan/tata-kelola-lingkungan', label: 'Tata kelola lingkungan' },
+        { to: '/pelabuhan/kebersihan-kolam', label: 'Kebersihan Kolam' },
+        { to: '/pelabuhan/kebersihan-daratan', label: 'Kebersihan daratan' },
+        { to: '/pelabuhan/bimtek-cpib', label: 'Bimbingan teknis CPIB Kepada nelayan' },
+      ]
+    },
     { 
       key: 'fasilitas',
       label: 'Fasilitas', 
@@ -78,17 +102,61 @@ export default function Sidebar({ open, collapsed, onClose }) {
         {
           key: 'penunjang',
           label: 'Penunjang',
-          to: '/fasilitas/penunjang'
+          submenu: [
+            { to: '/fasilitas/penunjang/balai-pertemuan-nelayan', label: 'Balai pertemuan nelayan' },
+            { to: '/fasilitas/penunjang/mes-operator', label: 'mes operator' },
+            { to: '/fasilitas/penunjang/wisma-nelayan', label: 'wisma nelayan' },
+            { to: '/fasilitas/penunjang/fasilitas-sosial-dan-umum', label: 'fasilitas sosial dan umum' },
+            { to: '/fasilitas/penunjang/tempat-istirahat-shelter-nelayan', label: 'tempat istirahat/shelter nelayan' },
+            { to: '/fasilitas/penunjang/pertokoan-kios-nelayan', label: 'pertokoan/kios nelayan' },
+            { to: '/fasilitas/penunjang/fasilitas-pengamanan-kawasan', label: 'fasilitas pengamanan kawasan' },
+            { to: '/fasilitas/penunjang/pasar-ikan', label: 'Pasar Ikan' },
+          ]
         }
       ]
     },
     { to: '/website', label: 'Website', icon: GlobeAltIcon },
-    { to: '/dokumen', label: 'Dokumen', icon: DocumentTextIcon },
+    { to: '/berita', label: 'Berita', icon: DocumentTextIcon },
+    {
+      key: 'master-data',
+      label: 'Master Data',
+      icon: ClipboardDocumentListIcon,
+      submenu: [
+        { to: '/master-data/pelabuhan', label: 'Pelabuhan' },
+        { to: '/master-data/sumber-dana', label: 'Sumber Dana' },
+        { to: '/master-data/jenis-konstruksi', label: 'Jenis Konstruksi' },
+        { to: '/master-data/jenis-fasilitas', label: 'Jenis Fasilitas' },
+        { to: '/master-data/kondisi', label: 'Kondisi' },
+      ]
+    },
     { to: '/profil', label: 'Profil', icon: UserCircleIcon },
     { to: '/pengaturan', label: 'Pengaturan', icon: Cog6ToothIcon },
   ]
 
+  // Auto-expand submenus when current route is inside their subtree
   const location = useLocation()
+  useEffect(() => {
+    const matchLink = (it) => it.to && (location.pathname === it.to || location.pathname.startsWith(it.to + '/'))
+    const findKeys = (list) => {
+      for (const it of list) {
+        if (it.submenu) {
+          const childKeys = findKeys(it.submenu)
+          if (childKeys) return [it.key, ...childKeys]
+        } else if (matchLink(it)) {
+          return []
+        }
+      }
+      return null
+    }
+    const keys = findKeys(items) || []
+    setOpenSubmenus(prev => {
+      const next = { ...prev }
+      keys.forEach(k => { if (prev[k] !== false) next[k] = true })
+      return next
+    })
+  }, [location.pathname])
+
+  // location is defined above for auto-expanding logic
   
   const hasActiveChild = (item) => {
     if (item.to) {

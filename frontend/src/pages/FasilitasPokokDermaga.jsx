@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../styles/fasilitas-form.css'
 import FormHeader from '../components/FormHeader'
-import SearchableSelect from '../components/SearchableSelect'
+import SmartSelect from '../components/SmartSelect'
 import StandardFooterFields from '../components/StandardFooterFields'
 import { createIsRequiredEmpty, createIsSaveDisabled } from '../utils/formValidation'
 import { PELABUHAN_OPTIONS, SUMBER_DANA_OPTIONS, KONDISI_OPTIONS } from '../utils/formStandards'
@@ -130,7 +130,7 @@ const FasilitasPokokDermaga = () => {
                 <button onClick={() => setOpenTip(null)} aria-label="Tutup" style={{ position: 'absolute', top: 4, right: 6, background: 'transparent', border: 'none', color: '#6b7280', cursor: 'pointer' }}>✕</button>
               </div>
             )}
-            <SearchableSelect name="pelabuhan" value={formData.pelabuhan} onChange={handleInputChange} options={PELABUHAN_OPTIONS} className="form-select" required style={{ fontSize: 14 }} placeholder="Cari atau pilih pelabuhan..." />
+            <SmartSelect name="pelabuhan" value={formData.pelabuhan} onChange={handleInputChange} category="pelabuhan" baseOptions={PELABUHAN_OPTIONS} className="form-select" required style={{ fontSize: 14 }} placeholder="Cari atau pilih pelabuhan..." />
           </div>
         )}
         selectedLabel={formData.pelabuhan ? 'Pelabuhan Terpilih:' : null}
