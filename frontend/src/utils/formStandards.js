@@ -36,6 +36,37 @@ export const SUMBER_DANA_OPTIONS = [
   "Lainnya",
 ]
 
+// Daftar standar untuk Jenis Ikan lintas form
+export const JENIS_IKAN_OPTIONS = [
+  'Tongkol', 'Cakalang', 'Tuna', 'Kembung', 'Bandeng', 'Lele', 'Gurame'
+]
+
+// Daftar standar untuk Transportasi lintas form
+export const TRANSPORTASI_OPTIONS = [
+  'Kapal Angkut', 'Truk Pendingin', 'Pickup', 'Perahu', 'Lainnya'
+]
+
+// Daftar standar untuk Kategori pemasaran lintas form
+export const KATEGORI_OPTIONS = [
+  'Lokal', 'Domestik', 'Antar Pulau', 'Ekspor', 'Lainnya'
+]
+
+// Daftar standar untuk Tujuan pemasaran lintas form
+export const TUJUAN_OPTIONS = [
+  'Pasar Lokal', 'Antar Kota', 'Antar Provinsi', 'Ekspor', 'Lainnya'
+]
+
+// Daftar standar untuk Tipe Dokumen pelabuhan perikanan
+export const TIPE_DOKUMEN_OPTIONS = [
+  'Peraturan',
+  'Keputusan',
+  'Surat Edaran',
+  'Pedoman',
+  'SOP',
+  'Nota Dinas',
+  'Lainnya',
+]
+
 // Standar field wajib lintas form untuk masa depan
 // Gunakan ini agar semua form baru otomatis mewajibkan:
 // - Kondisi (text)

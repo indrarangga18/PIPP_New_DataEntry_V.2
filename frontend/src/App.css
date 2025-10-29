@@ -41,3 +41,90 @@
 .read-the-docs {
   color: #888;
 }
+/* Tabel responsif untuk halaman Distribusi Ikan */
+.table-responsive {
+  width: 100%; /* pastikan tidak melebar melebihi kolom form */
+  max-width: 100%;
+  box-sizing: border-box; /* hitung padding & border dalam lebar kontainer */
+  display: block; /* kontainer block penuh agar mengikuti kolom form */
+  overflow: scroll; /* selalu tampilkan scrollbar horizontal & vertikal */
+  -webkit-overflow-scrolling: touch; /* smooth scroll di perangkat sentuh */
+  scrollbar-width: thin; /* Firefox: buat scrollbar terlihat namun ramping */
+  scrollbar-color: #cbd5e1 #f1f5f9; /* Firefox: thumb & track colors */
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  max-height: 70vh; /* sedikit lebih tinggi agar area scroll lebih lega */
+  padding: 8px; /* selaraskan dengan padding layout form */
+}
+
+/* Chrome/Safari/Edge: custom scrollbar agar selalu tampak dengan gaya halus */
+.table-responsive::-webkit-scrollbar {
+  width: 10px;
+  height: 10px; /* untuk scrollbar horizontal */
+}
+.table-responsive::-webkit-scrollbar-track {
+  background: #f1f5f9; /* slate-50 */
+  border-radius: 8px;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #cbd5e1; /* slate-300 */
+  border-radius: 8px;
+  border: 2px solid #f1f5f9; /* beri ruang agar tampak lembut */
+}
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8; /* slate-400 */
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  min-width: 1500px; /* sesuaikan dengan lebar area form, tetap memungkinkan horizontal scroll */
+}
+
+.data-table thead tr {
+  background: #f9fafb;
+}
+
+.data-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2; /* pastikan di atas isi tabel */
+  background: #f9fafb; /* warna latar tetap saat sticky */
+}
+
+/* Buat kolom nomor tetap terlihat saat scroll horizontal */
+.data-table thead th:first-child,
+.data-table tbody td:first-child {
+  position: sticky;
+  left: 0;
+  background: #f9fafb;
+}
+.data-table thead th:first-child { z-index: 3; }
+.data-table tbody td:first-child { z-index: 1; }
+
+.data-table th,
+.data-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+.data-table th {
+  font-size: 13px;
+  color: #6b7280;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.data-table .cell-number {
+  color: #334155;
+  font-weight: 600;
+  width: 56px;
+}
+
+.data-table td .form-input,
+.data-table td .form-select {
+  width: 100%;
+  box-sizing: border-box;
+}

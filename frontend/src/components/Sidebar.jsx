@@ -35,7 +35,15 @@ export default function Sidebar({ open, collapsed, onClose }) {
   const items = [
     { to: '/', label: 'Home', icon: HomeIcon },
     { to: '/produksi', label: 'Produksi', icon: ChartBarIcon },
-    { to: '/distribusi-ikan', label: 'Distribusi Ikan', icon: TruckIcon },
+    {
+      key: 'distribusi-ikan',
+      label: 'Distribusi Ikan',
+      icon: TruckIcon,
+      submenu: [
+        { to: '/distribusi-ikan/pemasaran-masuk', label: 'Pemasaran Masuk' },
+        { to: '/distribusi-ikan/pemasaran-keluar', label: 'Pemasaran Keluar' },
+      ]
+    },
     { to: '/usaha-pendapatan-pelabuhan', label: 'Usaha dan pendapatan Pelabuhan', icon: BanknotesIcon },
     { to: '/dokumen-pelabuhan-perikanan', label: 'Dokumen Pelabuhan Perikanan', icon: ClipboardDocumentListIcon },
     {
@@ -127,6 +135,9 @@ export default function Sidebar({ open, collapsed, onClose }) {
         { to: '/master-data/jenis-konstruksi', label: 'Jenis Konstruksi' },
         { to: '/master-data/jenis-fasilitas', label: 'Jenis Fasilitas' },
         { to: '/master-data/kondisi', label: 'Kondisi' },
+        { to: '/master-data/tipe-dokumen', label: 'Tipe Dokumen' },
+        { to: '/master-data/jenis-ikan', label: 'Jenis Ikan' },
+        { to: '/master-data/transportasi', label: 'Transportasi' },
       ]
     },
     { to: '/profil', label: 'Profil', icon: UserCircleIcon },

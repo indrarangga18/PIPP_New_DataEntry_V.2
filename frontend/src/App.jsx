@@ -4,6 +4,8 @@ import AppLayout from './layouts/AppLayout'
 import Home from './pages/Home'
 import Produksi from './pages/Produksi'
 import DistribusiIkan from './pages/DistribusiIkan'
+import DistribusiIkanPemasaranMasuk from './pages/DistribusiIkanPemasaranMasuk'
+import DistribusiIkanPemasaranKeluar from './pages/DistribusiIkanPemasaranKeluar'
 import UsahaPendapatanPelabuhan from './pages/UsahaPendapatanPelabuhan'
 import DokumenPelabuhanPerikanan from './pages/DokumenPelabuhanPerikanan'
 import Fasilitas from './pages/Fasilitas'
@@ -17,6 +19,9 @@ import MasterDataSumberDana from './pages/MasterDataSumberDana'
 import MasterDataJenisKonstruksi from './pages/MasterDataJenisKonstruksi'
 import MasterDataJenisFasilitas from './pages/MasterDataJenisFasilitas'
 import MasterDataKondisi from './pages/MasterDataKondisi'
+import MasterDataTransportasi from './pages/MasterDataTransportasi'
+import MasterDataJenisIkan from './pages/MasterDataJenisIkan'
+import MasterDataTipeDokumen from './pages/MasterDataTipeDokumen'
 import PelabuhanKondisiFisik from './pages/Profil Pelabuhan/KondisiFisik'
 import PelabuhanDataUmum from './pages/Profil Pelabuhan/DataUmum'
 import PelabuhanInformasiWilayah from './pages/Profil Pelabuhan/InformasiWilayah'
@@ -71,6 +76,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/produksi" element={<Produksi />} />
         <Route path="/distribusi-ikan" element={<DistribusiIkan />} />
+        <Route path="/distribusi-ikan/pemasaran-masuk" element={<DistribusiIkanPemasaranMasuk />} />
+        <Route path="/distribusi-ikan/pemasaran-keluar" element={<DistribusiIkanPemasaranKeluar />} />
         <Route path="/usaha-pendapatan-pelabuhan" element={<UsahaPendapatanPelabuhan />} />
         <Route path="/dokumen-pelabuhan-perikanan" element={<DokumenPelabuhanPerikanan />} />
         <Route path="/fasilitas" element={<Fasilitas />} />
@@ -132,6 +139,9 @@ function App() {
         <Route path="/master-data/jenis-konstruksi" element={<MasterDataJenisKonstruksi />} />
         <Route path="/master-data/jenis-fasilitas" element={<MasterDataJenisFasilitas />} />
         <Route path="/master-data/kondisi" element={<MasterDataKondisi />} />
+        <Route path="/master-data/transportasi" element={<MasterDataTransportasi />} />
+        <Route path="/master-data/jenis-ikan" element={<MasterDataJenisIkan />} />
+        <Route path="/master-data/tipe-dokumen" element={<MasterDataTipeDokumen />} />
       </Routes>
     </AppLayout>
   )
