@@ -22,6 +22,8 @@ import MasterDataKondisi from './pages/MasterDataKondisi'
 import MasterDataTransportasi from './pages/MasterDataTransportasi'
 import MasterDataJenisIkan from './pages/MasterDataJenisIkan'
 import MasterDataTipeDokumen from './pages/MasterDataTipeDokumen'
+import MasterDataIndustri from './pages/MasterDataIndustri'
+import MasterDataHasilOlahan from './pages/MasterDataHasilOlahan'
 import PelabuhanKondisiFisik from './pages/Profil Pelabuhan/KondisiFisik'
 import PelabuhanDataUmum from './pages/Profil Pelabuhan/DataUmum'
 import PelabuhanInformasiWilayah from './pages/Profil Pelabuhan/InformasiWilayah'
@@ -142,6 +144,8 @@ function App() {
         <Route path="/master-data/transportasi" element={<MasterDataTransportasi />} />
         <Route path="/master-data/jenis-ikan" element={<MasterDataJenisIkan />} />
         <Route path="/master-data/tipe-dokumen" element={<MasterDataTipeDokumen />} />
+        <Route path="/master-data/industri" element={<MasterDataIndustri />} />
+        <Route path="/master-data/hasil-olahan" element={<MasterDataHasilOlahan />} />
       </Routes>
     </AppLayout>
   )

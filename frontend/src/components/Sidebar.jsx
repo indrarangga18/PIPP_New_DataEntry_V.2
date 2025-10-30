@@ -135,6 +135,8 @@ export default function Sidebar({ open, collapsed, onClose }) {
         { to: '/master-data/jenis-konstruksi', label: 'Jenis Konstruksi' },
         { to: '/master-data/jenis-fasilitas', label: 'Jenis Fasilitas' },
         { to: '/master-data/kondisi', label: 'Kondisi' },
+        { to: '/master-data/industri', label: 'Industri' },
+        { to: '/master-data/hasil-olahan', label: 'Hasil Olahan' },
         { to: '/master-data/tipe-dokumen', label: 'Tipe Dokumen' },
         { to: '/master-data/jenis-ikan', label: 'Jenis Ikan' },
         { to: '/master-data/transportasi', label: 'Transportasi' },

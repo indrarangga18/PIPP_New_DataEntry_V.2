@@ -56,6 +56,32 @@ export const TUJUAN_OPTIONS = [
   'Pasar Lokal', 'Antar Kota', 'Antar Provinsi', 'Ekspor', 'Lainnya'
 ]
 
+// Daftar standar untuk Industri pengolahan
+export const INDUSTRI_OPTIONS = [
+  'Pengalengan',
+  'Pembekuan/Cold Storage',
+  'Pengasinan',
+  'Pengeringan',
+  'Surimi',
+  'Pindang',
+  'Fillet',
+  'Asap',
+  'Lainnya'
+]
+
+// Daftar standar untuk Hasil Olahan perikanan
+export const HASIL_OLAHAN_OPTIONS = [
+  'Ikan Kaleng',
+  'Ikan Beku',
+  'Ikan Asin',
+  'Ikan Kering',
+  'Surimi',
+  'Pindang',
+  'Fillet',
+  'Ikan Asap',
+  'Produk Lainnya'
+]
+
 // Daftar standar untuk Tipe Dokumen pelabuhan perikanan
 export const TIPE_DOKUMEN_OPTIONS = [
   'Peraturan',
