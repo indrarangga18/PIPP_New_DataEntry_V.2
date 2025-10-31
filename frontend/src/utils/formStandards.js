@@ -82,6 +82,20 @@ export const HASIL_OLAHAN_OPTIONS = [
   'Produk Lainnya'
 ]
 
+// Daftar standar untuk Jenis Badan Usaha
+export const JENIS_BADAN_USAHA_OPTIONS = [
+  'PT',
+  'CV',
+  'Koperasi',
+  'Firma',
+  'Perseorangan',
+  'UD',
+  'BUMN',
+  'BUMD',
+  'Yayasan',
+  'Lainnya'
+]
+
 // Daftar standar untuk Tipe Dokumen pelabuhan perikanan
 export const TIPE_DOKUMEN_OPTIONS = [
   'Peraturan',

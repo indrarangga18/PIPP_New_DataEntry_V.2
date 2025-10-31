@@ -44,7 +44,23 @@ export default function Sidebar({ open, collapsed, onClose }) {
         { to: '/distribusi-ikan/pemasaran-keluar', label: 'Pemasaran Keluar' },
       ]
     },
-    { to: '/usaha-pendapatan-pelabuhan', label: 'Usaha dan pendapatan Pelabuhan', icon: BanknotesIcon },
+    {
+      key: 'usaha-pendapatan',
+      label: 'Usaha dan pendapatan Pelabuhan',
+      icon: BanknotesIcon,
+      submenu: [
+        { to: '/usaha-pendapatan-pelabuhan/industri-di-pelabuhan', label: 'Industri di Pelabuhan' },
+        { to: '/usaha-pendapatan-pelabuhan/pendapatan-pelabuhan', label: 'Pendapatan Pelabuhan' },
+        { to: '/usaha-pendapatan-pelabuhan/pelayanan-bongkar-muat-ikan', label: 'Pelayanan Bongkar Muat Ikan' },
+        { to: '/usaha-pendapatan-pelabuhan/pelayanan-pengolahan-hasil-perikanan', label: 'Pelayanan Pengolahan Hasil Perikanan' },
+        { to: '/usaha-pendapatan-pelabuhan/pemasaran-dan-distribusi-ikan', label: 'Pemasaran Dan Distribusi Ikan' },
+        { to: '/usaha-pendapatan-pelabuhan/penggunaan-pemanfaatan-fasilitas-pelabuhan-perikanan', label: 'Penggunaan Dan Pemanfaatan Fasilitas Di Pelabuhan Perikanan' },
+        { to: '/usaha-pendapatan-pelabuhan/pelayanan-docking-galangan-kapal-perikanan', label: 'Pelayanan Docking Dan Galangan Kapal Perikanan' },
+        { to: '/usaha-pendapatan-pelabuhan/pelayanan-logistik-perbekalan-awak-kapal-perikanan', label: 'Pelayanan Logistik Dan Perbekalan Awak Kapal Perikanan Dan Kapal Perikanan' },
+        { to: '/usaha-pendapatan-pelabuhan/penyelenggaraan-wisata-bahari', label: 'Penyelenggaraan Wisata Bahari' },
+        { to: '/usaha-pendapatan-pelabuhan/fasilitasi-pelayanan-lembaga-keuangan', label: 'Fasilitasi Tempat Pelayanan Lembaga Keuangan' },
+      ]
+    },
     { to: '/dokumen-pelabuhan-perikanan', label: 'Dokumen Pelabuhan Perikanan', icon: ClipboardDocumentListIcon },
     {
       key: 'pelabuhan',
@@ -135,6 +151,7 @@ export default function Sidebar({ open, collapsed, onClose }) {
         { to: '/master-data/jenis-konstruksi', label: 'Jenis Konstruksi' },
         { to: '/master-data/jenis-fasilitas', label: 'Jenis Fasilitas' },
         { to: '/master-data/kondisi', label: 'Kondisi' },
+        { to: '/master-data/jenis-badan-usaha', label: 'Jenis Badan Usaha' },
         { to: '/master-data/industri', label: 'Industri' },
         { to: '/master-data/hasil-olahan', label: 'Hasil Olahan' },
         { to: '/master-data/tipe-dokumen', label: 'Tipe Dokumen' },

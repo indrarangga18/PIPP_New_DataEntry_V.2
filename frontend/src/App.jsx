@@ -7,6 +7,16 @@ import DistribusiIkan from './pages/DistribusiIkan'
 import DistribusiIkanPemasaranMasuk from './pages/DistribusiIkanPemasaranMasuk'
 import DistribusiIkanPemasaranKeluar from './pages/DistribusiIkanPemasaranKeluar'
 import UsahaPendapatanPelabuhan from './pages/UsahaPendapatanPelabuhan'
+import IndustriPelabuhan from './pages/Usaha Pendapatan Pelabuhan/IndustriPelabuhan'
+import PendapatanPelabuhan from './pages/Usaha Pendapatan Pelabuhan/PendapatanPelabuhan'
+import PelayananBongkarMuatIkan from './pages/Usaha Pendapatan Pelabuhan/PelayananBongkarMuatIkan'
+import PelayananPengolahanHasilPerikanan from './pages/Usaha Pendapatan Pelabuhan/PelayananPengolahanHasilPerikanan'
+import PemasaranDistribusiIkan from './pages/Usaha Pendapatan Pelabuhan/PemasaranDistribusiIkan'
+import PenggunaanPemanfaatanFasilitasPelabuhanPerikanan from './pages/Usaha Pendapatan Pelabuhan/PenggunaanPemanfaatanFasilitasPelabuhanPerikanan'
+import PelayananDockingGalanganKapalPerikanan from './pages/Usaha Pendapatan Pelabuhan/PelayananDockingGalanganKapalPerikanan'
+import PelayananLogistikPerbekalanAwakKapalPerikanan from './pages/Usaha Pendapatan Pelabuhan/PelayananLogistikPerbekalanAwakKapalPerikanan'
+import PenyelenggaraanWisataBahari from './pages/Usaha Pendapatan Pelabuhan/PenyelenggaraanWisataBahari'
+import FasilitasiPelayananLembagaKeuangan from './pages/Usaha Pendapatan Pelabuhan/FasilitasiPelayananLembagaKeuangan'
 import DokumenPelabuhanPerikanan from './pages/DokumenPelabuhanPerikanan'
 import Fasilitas from './pages/Fasilitas'
 import Website from './pages/Website'
@@ -24,6 +34,7 @@ import MasterDataJenisIkan from './pages/MasterDataJenisIkan'
 import MasterDataTipeDokumen from './pages/MasterDataTipeDokumen'
 import MasterDataIndustri from './pages/MasterDataIndustri'
 import MasterDataHasilOlahan from './pages/MasterDataHasilOlahan'
+import MasterDataJenisBadanUsaha from './pages/MasterDataJenisBadanUsaha'
 import PelabuhanKondisiFisik from './pages/Profil Pelabuhan/KondisiFisik'
 import PelabuhanDataUmum from './pages/Profil Pelabuhan/DataUmum'
 import PelabuhanInformasiWilayah from './pages/Profil Pelabuhan/InformasiWilayah'
@@ -81,6 +92,16 @@ function App() {
         <Route path="/distribusi-ikan/pemasaran-masuk" element={<DistribusiIkanPemasaranMasuk />} />
         <Route path="/distribusi-ikan/pemasaran-keluar" element={<DistribusiIkanPemasaranKeluar />} />
         <Route path="/usaha-pendapatan-pelabuhan" element={<UsahaPendapatanPelabuhan />} />
+        <Route path="/usaha-pendapatan-pelabuhan/industri-di-pelabuhan" element={<IndustriPelabuhan />} />
+        <Route path="/usaha-pendapatan-pelabuhan/pendapatan-pelabuhan" element={<PendapatanPelabuhan />} />
+        <Route path="/usaha-pendapatan-pelabuhan/pelayanan-bongkar-muat-ikan" element={<PelayananBongkarMuatIkan />} />
+        <Route path="/usaha-pendapatan-pelabuhan/pelayanan-pengolahan-hasil-perikanan" element={<PelayananPengolahanHasilPerikanan />} />
+        <Route path="/usaha-pendapatan-pelabuhan/pemasaran-dan-distribusi-ikan" element={<PemasaranDistribusiIkan />} />
+        <Route path="/usaha-pendapatan-pelabuhan/penggunaan-pemanfaatan-fasilitas-pelabuhan-perikanan" element={<PenggunaanPemanfaatanFasilitasPelabuhanPerikanan />} />
+        <Route path="/usaha-pendapatan-pelabuhan/pelayanan-docking-galangan-kapal-perikanan" element={<PelayananDockingGalanganKapalPerikanan />} />
+        <Route path="/usaha-pendapatan-pelabuhan/pelayanan-logistik-perbekalan-awak-kapal-perikanan" element={<PelayananLogistikPerbekalanAwakKapalPerikanan />} />
+        <Route path="/usaha-pendapatan-pelabuhan/penyelenggaraan-wisata-bahari" element={<PenyelenggaraanWisataBahari />} />
+        <Route path="/usaha-pendapatan-pelabuhan/fasilitasi-pelayanan-lembaga-keuangan" element={<FasilitasiPelayananLembagaKeuangan />} />
         <Route path="/dokumen-pelabuhan-perikanan" element={<DokumenPelabuhanPerikanan />} />
         <Route path="/fasilitas" element={<Fasilitas />} />
         <Route path="/fasilitas/pokok/jalan" element={<FasilitasPokokJalan />} />
@@ -145,6 +166,7 @@ function App() {
         <Route path="/master-data/jenis-ikan" element={<MasterDataJenisIkan />} />
         <Route path="/master-data/tipe-dokumen" element={<MasterDataTipeDokumen />} />
         <Route path="/master-data/industri" element={<MasterDataIndustri />} />
+        <Route path="/master-data/jenis-badan-usaha" element={<MasterDataJenisBadanUsaha />} />
         <Route path="/master-data/hasil-olahan" element={<MasterDataHasilOlahan />} />
       </Routes>
     </AppLayout>
