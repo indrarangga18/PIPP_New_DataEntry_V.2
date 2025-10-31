@@ -1,6 +1,6 @@
 # Standarisasi Form PIPP
 
-Halaman `Fasilitas Pokok - Jalan` (http://localhost:5173/fasilitas/pokok/jalan) menjadi referensi standar. Gunakan pedoman ini untuk semua form yang akan dibuat agar konsisten.
+Halaman `Fasilitas Pokok - Jalan` (http://localhost:5172/fasilitas/pokok/jalan) menjadi referensi standar. Gunakan pedoman ini untuk semua form yang akan dibuat agar konsisten.
 
 ## Typography
 - Font family: system-ui stack (`system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif`).
