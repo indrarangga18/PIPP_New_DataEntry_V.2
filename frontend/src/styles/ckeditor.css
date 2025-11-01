@@ -1,0 +1,37 @@
+/* Flat-style toolbar to resemble CKEditor default theme with tweaks */
+.ck-editor .ck-toolbar {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 4px 6px;
+}
+
+.ck-editor .ck-toolbar .ck-toolbar__items {
+  gap: 6px;
+}
+
+.ck-editor .ck-button {
+  padding: 6px;
+}
+
+.ck-editor .ck-button .ck-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Editable area look */
+.ck-editor__editable_inline {
+  min-height: 260px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+/* Improve table selection handles spacing a bit */
+.ck-content table {
+  border-collapse: collapse;
+}
+.ck-content td, .ck-content th {
+  padding: 6px 8px;
+  border: 1px solid #e5e7eb;
+}

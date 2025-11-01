@@ -1,0 +1,92 @@
+/* Banner page styles */
+.banner-page {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 24px;
+}
+
+.banner-left, .banner-right {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.collapse-btn {
+  background: transparent;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.dropzone {
+  border: 2px dashed #93c5fd;
+  border-radius: 10px;
+  padding: 18px;
+  text-align: center;
+  cursor: pointer;
+  background: #f8fafc;
+}
+.dz-text { color: #1f2937; font-weight: 600; }
+.preview-img { width: 100%; border-radius: 8px; display: block; }
+
+.form-field { margin-top: 14px; }
+.form-field label { display: block; font-weight: 600; margin-bottom: 6px; }
+.text-input { width: 100%; padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; }
+
+.primary-btn {
+  margin-top: 16px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  color: #fff;
+  background: #2D3A8C; /* deep indigo to resemble screenshot */
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.secondary-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  color: #fff;
+  background: #4c51bf;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.info-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #eef2ff;
+  color: #1f2937;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.close-info { margin-left: auto; background: transparent; border: none; color: #6b7280; cursor: pointer; }
+
+.list-area { margin-top: 14px; }
+.empty-box { height: 160px; background: #e5e7eb; border: 2px dashed #cbd5e1; border-radius: 10px; }
+
+.banner-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.banner-item { display: flex; align-items: center; gap: 12px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 8px; }
+.item-thumb { width: 88px; height: 48px; object-fit: cover; border-radius: 6px; }
+.item-meta { flex: 1; }
+.item-title { font-weight: 700; }
+.item-sub { font-size: 12px; color: #374151; }
+.delete-btn { background: transparent; border: none; color: #ef4444; font-weight: 700; cursor: pointer; }
+
+@media (max-width: 1023px) {
+  .banner-page { grid-template-columns: 1fr; }
+}

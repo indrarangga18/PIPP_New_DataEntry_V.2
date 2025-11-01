@@ -51,6 +51,8 @@ export default function Sidebar({ open, collapsed, onClose }) {
       submenu: [
         { to: '/usaha-pendapatan-pelabuhan/industri-di-pelabuhan', label: 'Industri di Pelabuhan' },
         { to: '/usaha-pendapatan-pelabuhan/pendapatan-pelabuhan', label: 'Pendapatan Pelabuhan' },
+        { to: '/usaha-pendapatan-pelabuhan/pengolahan-hasil-perikanan', label: 'Pengolahan Hasil Perikanan' },
+        { to: '/usaha-pendapatan-pelabuhan/pemasok-perbekalan', label: 'Pemasok Perbekalan' },
       ]
     },
     { to: '/dokumen-pelabuhan-perikanan', label: 'Dokumen Pelabuhan Perikanan', icon: ClipboardDocumentListIcon },
@@ -131,7 +133,15 @@ export default function Sidebar({ open, collapsed, onClose }) {
         }
       ]
     },
-    { to: '/website', label: 'Website', icon: GlobeAltIcon },
+    {
+      key: 'website',
+      label: 'Website',
+      icon: GlobeAltIcon,
+      submenu: [
+        { to: '/website/banner', label: 'Banner' },
+        { to: '/website/sejarah-pelabuhan', label: 'Sejarah Pelabuhan' },
+      ]
+    },
     { to: '/berita', label: 'Berita', icon: DocumentTextIcon },
     {
       key: 'master-data',
@@ -148,6 +158,7 @@ export default function Sidebar({ open, collapsed, onClose }) {
         { to: '/master-data/hasil-olahan', label: 'Hasil Olahan' },
         { to: '/master-data/tipe-dokumen', label: 'Tipe Dokumen' },
         { to: '/master-data/jenis-ikan', label: 'Jenis Ikan' },
+        { to: '/master-data/url-website', label: 'URL Website' },
         { to: '/master-data/transportasi', label: 'Transportasi' },
       ]
     },

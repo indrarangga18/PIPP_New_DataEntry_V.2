@@ -1,0 +1,7 @@
+/* Simple tabs styling consistent with existing section-card aesthetics */
+.tabs { margin-top: 16px; }
+.tabs-nav { display: flex; gap: 8px; border-bottom: 1px solid #e5e7eb; margin-bottom: 12px; }
+.tab { background: #f9fafb; border: 1px solid #e5e7eb; border-bottom: none; padding: 8px 12px; border-top-left-radius: 8px; border-top-right-radius: 8px; cursor: pointer; font-size: 14px; color: #374151; }
+.tab.active { background: #ffffff; color: #111827; font-weight: 600; }
+.tab:hover { background: #fff; }
+.tab-content { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 0 8px 8px 8px; padding: 12px; }

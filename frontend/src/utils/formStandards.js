@@ -107,6 +107,28 @@ export const TIPE_DOKUMEN_OPTIONS = [
   'Lainnya',
 ]
 
+// Daftar standar untuk URL Website (digunakan pada Banner)
+// Ini hanya contoh awal; Anda dapat menambah/mengelola di Master Data.
+export const URL_WEBSITE_OPTIONS = [
+  'https://',
+  '/profil-pelabuhan',
+  '/sejarah-pelabuhan',
+  '/berita',
+  '/layanan',
+  '/kontak',
+]
+
+// Daftar standar untuk Tipe Berita (Master Data Berita)
+export const TIPE_BERITA_OPTIONS = [
+  'Umum',
+  'Pengumuman',
+  'Kegiatan',
+  'Profil',
+  'Opini',
+  'Headline',
+  'Lainnya',
+]
+
 // Standar field wajib lintas form untuk masa depan
 // Gunakan ini agar semua form baru otomatis mewajibkan:
 // - Kondisi (text)
