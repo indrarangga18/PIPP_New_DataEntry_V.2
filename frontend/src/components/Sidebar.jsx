@@ -51,14 +51,6 @@ export default function Sidebar({ open, collapsed, onClose }) {
       submenu: [
         { to: '/usaha-pendapatan-pelabuhan/industri-di-pelabuhan', label: 'Industri di Pelabuhan' },
         { to: '/usaha-pendapatan-pelabuhan/pendapatan-pelabuhan', label: 'Pendapatan Pelabuhan' },
-        { to: '/usaha-pendapatan-pelabuhan/pelayanan-bongkar-muat-ikan', label: 'Pelayanan Bongkar Muat Ikan' },
-        { to: '/usaha-pendapatan-pelabuhan/pelayanan-pengolahan-hasil-perikanan', label: 'Pelayanan Pengolahan Hasil Perikanan' },
-        { to: '/usaha-pendapatan-pelabuhan/pemasaran-dan-distribusi-ikan', label: 'Pemasaran Dan Distribusi Ikan' },
-        { to: '/usaha-pendapatan-pelabuhan/penggunaan-pemanfaatan-fasilitas-pelabuhan-perikanan', label: 'Penggunaan Dan Pemanfaatan Fasilitas Di Pelabuhan Perikanan' },
-        { to: '/usaha-pendapatan-pelabuhan/pelayanan-docking-galangan-kapal-perikanan', label: 'Pelayanan Docking Dan Galangan Kapal Perikanan' },
-        { to: '/usaha-pendapatan-pelabuhan/pelayanan-logistik-perbekalan-awak-kapal-perikanan', label: 'Pelayanan Logistik Dan Perbekalan Awak Kapal Perikanan Dan Kapal Perikanan' },
-        { to: '/usaha-pendapatan-pelabuhan/penyelenggaraan-wisata-bahari', label: 'Penyelenggaraan Wisata Bahari' },
-        { to: '/usaha-pendapatan-pelabuhan/fasilitasi-pelayanan-lembaga-keuangan', label: 'Fasilitasi Tempat Pelayanan Lembaga Keuangan' },
       ]
     },
     { to: '/dokumen-pelabuhan-perikanan', label: 'Dokumen Pelabuhan Perikanan', icon: ClipboardDocumentListIcon },
